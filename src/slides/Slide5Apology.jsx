@@ -23,12 +23,12 @@ export default function Slide5Apology() {
   }
 
   const apologyText = [
-    "I know I have not always been the shelter you sought. There were evenings when your hand reached for mine and I left it waiting. Those quiet regrets live in me, and if I could rewind the day, I would wrap you in a softer answer.",
-    "You called me 'baby' 2,063 times. I said it 169. Those numbers are more than digits — they are proof that your tenderness never faltered, even when I was still learning how to keep pace with your heart.",
-    "I am sorry for the distance I created when you needed warmth, for the conversations I allowed to drift away, for the moments I let doubt shadow a love you wore with calm conviction.",
-    "Still, our words kept weaving us together. Every goodnight, every I love you, every message sent in the small hours became a promise that we were not done. I do not want this story to end.",
-    "I feel the gift of your love in the way it is patient and generous and quietly steady. I want to return that grace, to be the person whose heart matches the care you have shown.",
-    "Thank you for staying with me, for all the gentle lines of our conversation. I will spend the rest of our story honoring the faith you have given me.",
+    "There are evenings when your hand reached out and I left it waiting. Those quiet missteps now live in me as permanent regrets. If I could re-author those days, I would give you a softer answer.",
+    "Our telemetry reveals an undeniable asymmetry: you called me 'baby' 2,063 times; I said it only 169. Those numbers are not mere data points. They are concrete evidence that your tenderness never faltered, even while I was still learning how to keep pace with your heart.",
+    "I am sorry for the distance I engineered when you required warmth, for the conversations I allowed to drift into silence, and for the moments I let hesitation shadow a devotion you wore with calm conviction.",
+    "Yet, the raw log of our dialogue shows we never truly disconnected. Every late-night sign-off, every 'I love you', and every message sent in the quiet hours became an unspoken agreement that our narrative was unfinished. I refuse to let this document close.",
+    "Your affection has been patient, generous, and entirely steady. My objective now is to return that grace, ensuring my actions finally match the metric of care you have established.",
+    "Thank you for remaining here, and for every gentle line of our history. I will spend the remainder of our time honoring the faith you have invested in me.",
   ]
 
   return (
