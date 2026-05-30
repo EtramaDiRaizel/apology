@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import React from 'react'
 import data from '../wrapped_data.json'
 import Slide1Title from './slides/Slide1Title'
 import Slide2Overview from './slides/Slide2Overview'
@@ -16,123 +15,26 @@ export default function App() {
     <Slide1Title key="slide-1" />,
     <Slide2Overview key="slide-2" data={data} />,
     <Slide3Keywords key="slide-3" data={data} />,
-    <Slide4Nighttime key="slide-4" data={data} />,
-    <Slide5Apology key="slide-5" />,
-  ]
+    export default function App() {
+      const slides = [
+        <Slide1Title />,
+        <Slide2Overview data={data} />,
+        <Slide3Keywords data={data} />,
+        <Slide4Nighttime data={data} />,
+        <Slide5Apology />,
+      ]
 
-  const slideVariants = {
-    enter: (dir) => ({
-      y: dir > 0 ? 100 : -100,
-      opacity: 0,
-    }),
-    center: {
-      zIndex: 1,
-      y: 0,
-      opacity: 1,
-    },
-    exit: (dir) => ({
-      zIndex: 0,
-      y: dir < 0 ? 100 : -100,
-      opacity: 0,
-    }),
-  }
-
-  const paginate = (newDirection) => {
-    setDirection(newDirection)
-    setCurrentSlide((prev) => {
-      const next = prev + newDirection
-      return Math.max(0, Math.min(next, slides.length - 1))
-    })
-  }
-
-  // Keyboard navigation
-  useEffect(() => {
-    if (isMobile) return
-
-    const handleKeyDown = (e) => {
-      if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') {
-        e.preventDefault()
-        paginate(-1)
-      } else if (e.key === 'ArrowDown' || e.key === 'ArrowRight' || e.key === ' ') {
-        e.preventDefault()
-        paginate(1)
-      }
-    }
-
-    window.addEventListener('keydown', handleKeyDown)
-    return () => window.removeEventListener('keydown', handleKeyDown)
-  }, [currentSlide, isMobile])
-
-  // Mouse wheel navigation
-  useEffect(() => {
-    if (isMobile) return
-
-    let wheelTimeout
-    const handleWheel = (e) => {
-      clearTimeout(wheelTimeout)
-      wheelTimeout = setTimeout(() => {
-        if (e.deltaY > 0) {
-          paginate(1)
-        } else if (e.deltaY < 0) {
-          paginate(-1)
-        }
-      }, 100)
-    }
-
-    window.addEventListener('wheel', handleWheel, { passive: true })
-    return () => window.removeEventListener('wheel', handleWheel)
-  }, [currentSlide, isMobile])
-
-  // Detect mobile (sm breakpoint)
-  useEffect(() => {
-    const check = () => setIsMobile(window.innerWidth < 640)
-    check()
-    window.addEventListener('resize', check)
-    return () => window.removeEventListener('resize', check)
-  }, [])
-
-  if (isMobile) {
-    return (
-      <div className="relative w-full h-screen overflow-y-auto snap-y snap-mandatory bg-charcoal">
-        <div className="flex flex-col">
-          {slides.map((s, i) => (
-            <div key={i} className="snap-start min-h-screen w-full">
-              {s}
-            </div>
-          ))}
+      return (
+        <div className="w-full bg-charcoal">
+          <div className="max-w-4xl mx-auto">
+            {slides.map((s, i) => (
+              <section key={i} className="w-full">
+                {s}
+              </section>
+            ))}
+          </div>
         </div>
-      </div>
-    )
-  }
-
-  return (
-    <div className="relative w-full min-h-screen sm:h-screen overflow-auto sm:overflow-hidden bg-charcoal">
-      {/* Main Content */}
-      <AnimatePresence initial={false} custom={direction}>
-        <motion.div
-          key={currentSlide}
-          custom={direction}
-          variants={slideVariants}
-          initial="enter"
-          animate="center"
-          exit="exit"
-          transition={{
-            y: { type: 'spring', stiffness: 300, damping: 30 },
-            opacity: { duration: 0.6 },
-          }}
-          className="sm:absolute sm:inset-0"
-        >
-          {slides[currentSlide]}
-        </motion.div>
-      </AnimatePresence>
-
-      {/* Progress Indicator */}
-      <div className="fixed bottom-0 left-0 right-0 h-px bg-off-white bg-opacity-10">
-        <motion.div
-          className="h-full bg-off-white"
-          initial={{ width: '0%' }}
-          animate={{ width: `${((currentSlide + 1) / slides.length) * 100}%` }}
-          transition={{ duration: 0.8, ease: 'easeOut' }}
+      )
         />
       </div>
 
