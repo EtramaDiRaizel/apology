@@ -10,6 +10,7 @@ import Slide5Apology from './slides/Slide5Apology'
 export default function App() {
   const [currentSlide, setCurrentSlide] = useState(0)
   const [direction, setDirection] = useState(0)
+  const [isMobile, setIsMobile] = useState(false)
 
   const slides = [
     <Slide1Title key="slide-1" />,
@@ -46,6 +47,8 @@ export default function App() {
 
   // Keyboard navigation
   useEffect(() => {
+    if (isMobile) return
+
     const handleKeyDown = (e) => {
       if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') {
         e.preventDefault()
@@ -58,10 +61,12 @@ export default function App() {
 
     window.addEventListener('keydown', handleKeyDown)
     return () => window.removeEventListener('keydown', handleKeyDown)
-  }, [currentSlide])
+  }, [currentSlide, isMobile])
 
   // Mouse wheel navigation
   useEffect(() => {
+    if (isMobile) return
+
     let wheelTimeout
     const handleWheel = (e) => {
       clearTimeout(wheelTimeout)
@@ -76,7 +81,29 @@ export default function App() {
 
     window.addEventListener('wheel', handleWheel, { passive: true })
     return () => window.removeEventListener('wheel', handleWheel)
-  }, [currentSlide])
+  }, [currentSlide, isMobile])
+
+  // Detect mobile (sm breakpoint)
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 640)
+    check()
+    window.addEventListener('resize', check)
+    return () => window.removeEventListener('resize', check)
+  }, [])
+
+  if (isMobile) {
+    return (
+      <div className="relative w-full h-screen overflow-y-auto snap-y snap-mandatory bg-charcoal">
+        <div className="flex flex-col">
+          {slides.map((s, i) => (
+            <div key={i} className="snap-start min-h-screen w-full">
+              {s}
+            </div>
+          ))}
+        </div>
+      </div>
+    )
+  }
 
   return (
     <div className="relative w-full min-h-screen sm:h-screen overflow-auto sm:overflow-hidden bg-charcoal">
