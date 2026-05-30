@@ -13,9 +13,7 @@ function Counter({ value, duration = 2 }) {
   }, [value])
 
   useEffect(() => {
-    const unsubscribe = displayValue.on("change", (v) => {
-      setDisplayedValue(v)
-    })
+    const unsubscribe = displayValue.on('change', (v) => setDisplayedValue(v))
     return unsubscribe
   }, [displayValue])
 
@@ -44,18 +42,9 @@ export default function Slide2Overview({ data }) {
   }
 
   const stats = [
-    {
-      label: 'Total Messages',
-      value: data.metadata.total_messages,
-    },
-    {
-      label: 'From ikram',
-      value: data.message_counts.ikram,
-    },
-    {
-      label: 'From twincess 🫶🏼',
-      value: data.message_counts['twincess 🫶🏼'],
-    },
+    { label: 'Total Messages', value: data.metadata.total_messages },
+    { label: 'From ikram', value: data.message_counts.ikram },
+    { label: 'From twincess 🫶🏼', value: data.message_counts['twincess 🫶🏼'] },
   ]
 
   return (
@@ -63,20 +52,18 @@ export default function Slide2Overview({ data }) {
       className="slide-container flex-col"
       variants={containerVariants}
       initial="hidden"
-      animate="visible"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.3 }}
     >
       <motion.div variants={itemVariants} className="mb-16">
-        <h2 className="typography-headline text-off-white">
-          The Conversation
-        </h2>
+        <h2 className="typography-headline text-off-white">The Conversation</h2>
         <motion.div className="w-12 h-px bg-subtle-accent mt-4" />
-      <motion.div
-        className="slide-container flex-col md:flex-row items-center"
-        variants={containerVariants}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, amount: 0.3 }}
-      >
+      </motion.div>
+
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 max-w-4xl mx-auto">
+        {stats.map((stat, idx) => (
+          <motion.div key={idx} variants={itemVariants} className="text-center">
+            <motion.div
               className="typography-display text-subtle-accent mb-4"
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
@@ -84,21 +71,14 @@ export default function Slide2Overview({ data }) {
             >
               <Counter value={stat.value} duration={2.5} />
             </motion.div>
-            <div className="typography-caption text-off-white text-opacity-50 tracking-wider">
-              {stat.label}
-            </div>
+            <div className="typography-caption text-off-white text-opacity-50 tracking-wider">{stat.label}</div>
           </motion.div>
         ))}
       </div>
 
-      {/* Supporting stat */}
-      <motion.div
-        variants={itemVariants}
-        className="mt-24 text-center max-w-2xl mx-auto"
-      >
+      <motion.div variants={itemVariants} className="mt-24 text-center max-w-2xl mx-auto">
         <p className="typography-body text-off-white text-opacity-60 leading-relaxed">
-          Eight months of saying good morning and goodnight. Of voice notes
-          and late replies and I miss yous. Every message here is a small proof that we chose each other, again and again.
+          Eight months of saying good morning and goodnight. Of voice notes and late replies and I miss yous. Every message here is a small proof that we chose each other, again and again.
         </p>
       </motion.div>
     </motion.div>
