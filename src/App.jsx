@@ -79,7 +79,7 @@ export default function App() {
   }, [currentSlide])
 
   return (
-    <div className="relative w-full h-screen overflow-hidden bg-charcoal">
+    <div className="relative w-full min-h-screen sm:h-screen overflow-auto sm:overflow-hidden bg-charcoal">
       {/* Main Content */}
       <AnimatePresence initial={false} custom={direction}>
         <motion.div
@@ -93,7 +93,7 @@ export default function App() {
             y: { type: 'spring', stiffness: 300, damping: 30 },
             opacity: { duration: 0.6 },
           }}
-          className="absolute inset-0"
+          className="sm:absolute sm:inset-0"
         >
           {slides[currentSlide]}
         </motion.div>
