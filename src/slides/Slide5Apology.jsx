@@ -33,7 +33,7 @@ export default function Slide5Apology() {
 
   return (
     <motion.div
-      className="slide-container flex-col px-4 py-10 sm:px-6 sm:py-12"
+      className="slide-container flex-col px-4 py-10 sm:px-6 sm:py-12 overflow-auto max-h-screen sm:max-h-full sm:overflow-visible"
       variants={containerVariants}
       initial="hidden"
       animate="visible"
