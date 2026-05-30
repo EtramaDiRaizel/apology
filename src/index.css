@@ -14,7 +14,7 @@
 
 @layer components {
   .slide-container {
-    @apply w-full h-screen flex items-center justify-center px-safe py-16;
+    @apply w-full h-screen flex items-center justify-center px-safe py-16 relative;
   }
 
   .typography-display {
