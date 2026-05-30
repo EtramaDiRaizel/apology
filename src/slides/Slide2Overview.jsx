@@ -70,12 +70,13 @@ export default function Slide2Overview({ data }) {
           The Conversation
         </h2>
         <motion.div className="w-12 h-px bg-subtle-accent mt-4" />
-      </motion.div>
-
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-16 md:gap-24 max-w-5xl mx-auto w-full">
-        {stats.map((stat, idx) => (
-          <motion.div key={idx} variants={itemVariants} className="flex flex-col">
-            <motion.div
+      <motion.div
+        className="slide-container flex-col md:flex-row items-center"
+        variants={containerVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.3 }}
+      >
               className="typography-display text-subtle-accent mb-4"
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}

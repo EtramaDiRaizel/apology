@@ -43,7 +43,8 @@ export default function Slide3Keywords({ data }) {
       className="slide-container flex-col"
       variants={containerVariants}
       initial="hidden"
-      animate="visible"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.3 }}
     >
       <motion.div variants={itemVariants} className="mb-16">
         <h2 className="typography-headline text-off-white">

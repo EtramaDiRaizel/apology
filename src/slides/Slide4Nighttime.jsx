@@ -52,7 +52,8 @@ export default function Slide4Nighttime({ data }) {
       className="slide-container flex-col"
       variants={containerVariants}
       initial="hidden"
-      animate="visible"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.3 }}
     >
       <motion.div variants={itemVariants} className="mb-10 md:mb-12">
         <h2 className="typography-headline text-off-white text-center md:text-left">

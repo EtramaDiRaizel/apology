@@ -30,7 +30,8 @@ export default function Slide1Title() {
       className="slide-container flex-col justify-center"
       variants={containerVariants}
       initial="hidden"
-      animate="visible"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.3 }}
     >
       <div className="max-w-4xl mx-auto text-center">
         <motion.div variants={itemVariants} className="mb-8">

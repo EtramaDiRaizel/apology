@@ -36,7 +36,8 @@ export default function Slide5Apology() {
       className="slide-container h-auto sm:h-screen flex-col px-4 py-10 sm:px-6 sm:py-12 overflow-auto max-h-screen sm:max-h-full sm:overflow-visible"
       variants={containerVariants}
       initial="hidden"
-      animate="visible"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.3 }}
     >
       <div className="max-w-2xl w-full mx-auto px-2 sm:px-0">
         {/* Header */}
