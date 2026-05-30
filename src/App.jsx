@@ -20,7 +20,7 @@ export default function App() {
       <div className="max-w-4xl mx-auto">
         {slides.map((s, i) => (
           <section key={i} className="w-full py-12">
-            {s}
+            <div className="container-content">{s}</div>
           </section>
         ))}
       </div>
